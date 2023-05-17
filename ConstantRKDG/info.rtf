@@ -1,0 +1,87 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18320\viewh11500\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Shu\'92s linear test: u_t + (au)_x = 0\
+
+\b0 a = 1, u(x,0) = u0 is a special function with jump discontinuities and other irregularities\
+x \\in [-1,1], 0<t<T\
+bc = periodic\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Input files: LinAdv0005, or LinAdv0005b\
+Test file: test3.py\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+
+\b ShuRKDG3A.npy
+\b0 \
+Using Eulerian RKDG3 with MPP limiter:\
+------------------------------------------------------------\
+Exection time: 40.107892990112305\
+L2-Error obtain after 1280 step(s) = 1.2179E-01.\
+Cr =  0.25; q = 3; nsteps = 1280; Ne = M = 80; dt = 0.25h = 0.00625; T = 8.00\
+\
+Load results using the following numpy routine:\
+with open(\'92ShuRKDG3A.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solution at time T\
+	x = np.load(f)	# mesh points\
+	T = np.load(f)	# time T\
+	ue = np.load(f)    # exact solution at time T\
+	err = np.load(f)	# L2-error at time T\
+\
+
+\b ShuSLRKDG1A.npy
+\b0 \
+Using SL RKDG without limiter:\
+------------------------------------------------------------\
+Exection time: 27.56847620010376\
+L2-Error obtain after 40 step(s) = 1.0514E-09.\
+Cr =  8.00; q = 3; nsteps = 40; Ne = M = 80; dt = 8.00h = 0.20000; T = 8.00\
+\
+Load results using the following numpy routine:\
+with open(\'92ShuSLRKDG1A.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f) \
+	x = np.load(f)\
+	T = np.load(f)\
+	ue = np.load(f) \
+	err = np.load(f)\
+\
+
+\b ShuSLRKDG1B.npy
+\b0 \
+Using SL RKDG with MPP limiter:\
+------------------------------------------------------------\
+Exection time: 28.671056032180786\
+L2-Error obtain after 45 step(s) = 8.0720E-02.\
+Cr =  7.11; q = 3; nsteps = 45; Ne = M = 80; dt = 7.11h = 0.17778; T = 8.00\
+\
+Load results using the following numpy routine:\
+with open(\'92ShuSLRKDG1B.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f) \
+	x = np.load(f)\
+	T = np.load(f)\
+	ue = np.load(f) \
+	err = np.load(f)\
+\
+
+\b ShuSLRKDG1C.npy
+\b0 \
+Using SL RKDG with without limiter:\
+------------------------------------------------------------\
+Exection time: 28.617218017578125\
+L2-Error obtain after 45 step(s) = 6.7448E-02.\
+Cr =  7.11; q = 3; nsteps = 45; Ne = M = 80; dt = 7.11h = 0.17778; T = 8.00\
+\
+Load results using the following numpy routine:\
+with open(\'92ShuSLRKDG1C.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f) \
+	x = np.load(f)\
+	T = np.load(f)\
+	ue = np.load(f) \
+	err = np.load(f)\
+\
+\
+}
