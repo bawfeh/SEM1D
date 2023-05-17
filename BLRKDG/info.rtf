@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18320\viewh11500\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Buckley-Leverett equation: u_t + f(u)_x = 0\
+
+\b0 f(u) = u^2/[u^2+(1-u)^2], u(x,0) = u0 = Huang&Arbogast 2012\
+x \\in [0,1], 0<t<T\
+bc = Dirichlet\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Input files: NLinAdv0006.txt\
+Test file: test3.py, ref.py\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+
+\b BLRKDG4p6.pickle
+\b0 \
+Ref/exact solution: Using RKDG4 with minmod flux limiter\
+------------------------------------------------------------\
+Exection time: 27928.785717964172\
+Cr =  1.08; q = 6; nsteps = 15360; Ne = M = 1280; dt = 0.03h = 0.00003; T = 0.40\
+\
+Load results using the following numpy routine:\
+
+\b with open(\'92BLRKDG4p6.pickle\'92, \'91rb\'92) as f:\
+	exactsol = pickle.load(f) 
+\b0 \
+	\
+sol = exactsol[0] # list of all solutions from t=0 to t = 0.4\
+gll = exactsol[1]  # gauss distribution object\
+mesh = exactsol[2] (or exactsol[-1]) # computational mesh object\
+\
+
+\b BLRKDG3.npy
+\b0 \
+Using Eulerian RKDG3:\
+------------------------------------------------------------\
+Rel. L2-errors at times [0.  0.1 0.2 0.3 0.4] : err =  [0.01613743 0.01738316 0.01195408 0.0130162  0.01636582]\
+Cr =  3.98; q = 3; nsteps = 160; Ne = M = 160; dt = 0.40h = 0.00250; T = 0.40\
+\
+Load results using the following numpy routine:\
+with open(\'92BLRKDG3.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1, 0.2, 0.3, 0.4.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t =  t = 0., 0.1, 0.2, 0.3, 0.4.\
+	err = np.load(f)	# rel. L2-errors vector\
+\
+
+\b BLRKDG3SL.npy
+\b0 \
+Using SLRKDG3, an = f(un)/un:\
+------------------------------------------------------------\
+Exection time: 170.90088391304016\
+Rel.L2-errors at times [0.  0.1 0.2 0.3 0.4] : err =  [0.06933752 0.05261143 0.03298062 0.03347422 0.03470076]\
+Cr =  3.98; q = 3; nsteps = 160; Ne = M = 160; dt = 0.40h = 0.00250; T = 0.40\
+\
+Load results using the following numpy routine:\
+with open(\'92BLRKDG3SL.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1, 0.2, 0.3, 0.4.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t =  t = 0., 0.1, 0.2, 0.3, 0.4.\
+	err = np.load(f)	# rel. L2-errors vector\
+\
+
+\b BLRKDG3SL1.npy
+\b0 \
+Using SLRKDG3, an = f\'92(un):\
+------------------------------------------------------------\
+Exection time: 174.3282060623169\
+Rel.L2-errors at times [0.  0.1 0.2 0.3 0.4] : err =  [0.06933752 0.47887082 0.51553398 0.50009337 0.52414453]\
+Cr =  3.98; q = 3; nsteps = 160; Ne = M = 160; dt = 0.40h = 0.00250; T = 0.40\
+\
+Load results using the following numpy routine:\
+with open(\'92BLRKDG3SL.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1, 0.2, 0.3, 0.4.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t =  t = 0., 0.1, 0.2, 0.3, 0.4.\
+	err = np.load(f)	# rel. L2-errors vector\
+\
+
+\b BLRKDG3SL2.npy
+\b0 \
+Using SLRKDG3, an = (1-gma)*f\'92(un) + gma*f(un)/un; gma = (2/pi)atan(theta), theta = max slope ratio:\
+------------------------------------------------------------\
+Exection time: 173.99360489845276\
+Rel.L2-errors at times [0.  0.1 0.2 0.3 0.4] : err =  [0.06933752 0.05192914 0.03269721 0.03183349 0.03339774]\
+Cr =  3.98; q = 3; nsteps = 160; Ne = M = 160; dt = 0.40h = 0.00250; T = 0.40\
+\
+Load results using the following numpy routine:\
+with open(\'92BLRKDG3SL.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1, 0.2, 0.3, 0.4.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t =  t = 0., 0.1, 0.2, 0.3, 0.4.\
+	err = np.load(f)	# rel. L2-errors vector\
+\
+\
+}
