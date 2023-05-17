@@ -1,0 +1,48 @@
+# input file for 1D hyperbolic conservation law  u_t + f(u)_x = 0
+# A non-convex flux and initial data defined as in (Umax = 10.)
+# Huang & Arbogast 2012
+# Define domain : x\in[0,2], t\in[0,0.4]
+# 
+# example code : NLinAdv0006b
+
+origin 0 //
+
+# Nx  40
+# Dx  0.05 // 
+# Nx  80
+# Dx  0.025 // 
+Nx  160
+Dx  0.0125 //  
+# Nx  320
+# Dx  0.00625 // 
+# Nx  1280
+# Dx  0.0015625 // 
+
+-polyDeg 3 //
+
+# boundary conditions #
+
+# -Dirbc left right //
+-Dirbc all //
+#
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+# -leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+ -t 0 0.4 //
+ -Cr 0.25 //
+
+# -info 1D conservation law with non-convex flux using DG: x\in[0,2], u0-Huang & Arbogast (2012); Dirichlet bc. //
+# -outfile prob3c.mat //
+
+# -MPPlimit 0.0 1.0 //
+
+-transType nonlinear //
+
+-orderRK 3 // order of RKDG method
+
+-storeAll //

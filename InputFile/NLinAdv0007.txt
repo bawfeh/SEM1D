@@ -1,0 +1,66 @@
+# input file for 1D KdV equation u_t + uu_x + \nu u_xxx = 0, \nu>0
+# Pietra and Pohl (1999): u(x,0) = 1.5 + cos(x)
+# Define domain : x\in [0, 2\pi], t\in[0,4](???)
+# example code : LinAdv0002
+
+
+# origin -1.0 //
+# 
+origin 0.0 //
+
+# Nx  5
+# Dx  1.2566370614359172 //
+
+# Nx  10
+# Dx  0.6283185307179586 //
+
+# Nx  20
+# Dx  0.3141592653589793 //
+
+# Nx  32
+# Dx  0.19634954084936207 //
+
+Nx  64
+Dx  0.09817477042468103 //
+
+# Nx  80
+# Dx  0.07853981633974483 //
+
+# Nx  160
+# Dx  0.039269908169872414 //
+
+# Nx  255
+# Dx  0.024639942381096416 //
+
+# Nx  320
+# Dx  0.019634954084936207 //
+
+-polyDeg 3 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+# -t 0 1 //
+# -Re 0.05 // 
+-t 0 4 //
+-Re 0.01 // 
+-Cr 0.9 //
+# -Cr 1.8 //
+
+#  -info Solving kDV equaton using DIRK-CF: x\in[0,2\pi], u0 = 1.5 + cos(x): periodic bc. //
+
+-transType nonlinear //
+-CFmethod cf233 //
+
+#  -storeAll //

@@ -1,0 +1,48 @@
+# input file for 1D transport problem u_t + (a(x,t)u)_x = 0
+# a = 1,  u0 --> Shu's Linear Test problem
+# Define domain : [-1,1]
+# 
+# example code : LinAdv0005
+
+origin -1.0 //
+
+# Nx  10
+# Dx  0.2 //
+# Nx  20
+# Dx  0.1 //
+# Nx  40
+# Dx  0.05 //
+Nx  80
+Dx  0.025 //
+
+-polyDeg 3 //
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+-t 0 8 //
+#  -Re	1 	// 
+# -Cr 0.25 //
+# -Cr 7.1 //
+-Cr 8 //
+
+-info Solving linear advection using SLDG: Shu's Linear Test: a = 1, periodic bc. //
+
+# -outfile prob1b.mat
+
+-transType constant //
+
+# -MPPlimit 0.0 1.0 //
+
+ -orderRK 1 //
+
+# -storeAll //

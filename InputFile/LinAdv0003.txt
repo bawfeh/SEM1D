@@ -1,0 +1,55 @@
+# input file for 1D transport problem u_t + u_x = 0
+# Cockburn & Shu 2001: u0 = 'rectangular wave'
+# Define domain : [0,2\pi]
+# 
+# example code : LinAdv0003
+
+origin 0.0 //
+
+
+# Nx  5
+# Dx  1.2566370614359172 //
+# Nx  10
+# Dx  0.6283185307179586 //
+# Nx  20
+# Dx  0.3141592653589793 //
+# Nx  40
+# Dx  0.15707963267948966 //
+Nx  80
+Dx  0.07853981633974483 //
+# Nx  90
+# Dx  0.0698131700797731819 // for domain (0,2\pi)
+
+-polyDeg 3 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+ -t 0 20 //
+# -t 0 2
+# -dtmin 0.1 		//
+-Cr 2.0 //
+# -Cr 1.0 //
+
+-info Solving linear advection using SLDG: a = 1, x\in[0,2\pi], u0 = 'rectangular wave'; periodic bc. //
+ 
+-transType constant //
+
+-MPPlimit 0.0 1.0 //
+
+-orderRK 3 //
+
+#  -storeAll //
+
+

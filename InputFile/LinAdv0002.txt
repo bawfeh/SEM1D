@@ -1,0 +1,51 @@
+# input file for 1D transport problem u_t + (a(x,t)u)_x = 0
+# a = sin(x), u(x,0) = 1
+# Exact solution: u = sin(2atan(exp(-t)tan(x/2))/sin(x)
+# Define domain : [0, 2\pi]; at t = 1, Umax = 1
+# example code : LinAdv0002
+
+
+origin 0.0 //
+
+# Nx  5
+# Dx  1.2566370614359172 //
+Nx  10
+Dx  0.6283185307179586 //
+# Nx  20
+# Dx  0.3141592653589793 //
+# Nx  40
+# Dx  0.15707963267948966 //
+# Nx  80
+# Dx  0.07853981633974483 //
+# Nx  160
+# Dx  0.039269908169872414 //
+
+-polyDeg 3 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+-t 0 1 //
+-Cr 3.5 //
+# -Cr 10 //
+
+#  -info Solving linear advection using SLDG: a = \sin(x), x\in[-1,1], u0 = 1 bc: periodic bc. //
+
+-transType linear //
+
+ -orderRK 3 //
+
+# -PPlimit //
+
+#  -storeAll //

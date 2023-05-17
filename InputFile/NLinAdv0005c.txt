@@ -1,0 +1,57 @@
+# input file for 1D viscous Burgers equation  u_t + f(u)_x = \nu u_xx, \nu>0
+# Kometa et al. 2020
+# f(u) = u^2/2, u0 = \sin(\pi x)
+# Define domain : x\in[0,1], t\in[0,2]
+# 
+# example code : NLinAdv0005c
+
+origin 0.0 //
+
+# Nx  10
+# Dx  0.1 // 
+# Nx  20
+# Dx  0.05 // 
+# Nx  40
+# Dx  0.025 // 
+Nx  80
+Dx  0.0125 // 
+# Nx  160
+# Dx  0.00625 // 
+# Nx  320
+# Dx  0.003125 // 
+# Nx  640
+# Dx  0.00078125 // 
+# Nx  1280
+# Dx  0.0015625 // 
+# Nx  1280
+# Dx  0.00078125 // 
+
+-polyDeg 6 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+-Dirbc all //
+
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+# -leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+# -dtmin 0.1 		//
+-t 0 2 //
+-Cr 1.8 //
+-Re 0.01 //
+
+# -info Solving the viscous Burgers equation using DIRK-CF: x\in[0,1], u0 = \sin(\pi x); Homogeneous Dirichlet bc. //
+
+# -transtype nonlinear //
+
+-CFmethod cf233 //
+
+# -storeAll //
+

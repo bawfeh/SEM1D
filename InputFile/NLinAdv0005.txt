@@ -1,0 +1,62 @@
+# input file for 1D hyperbolic conservation law  u_t + f(u)_x = 0
+# Cockburn et al. 2001
+# f(u) = u^2/2, u0 = 0.25 + 0.5\sin(\pi (2x-1))
+# Define domain : x\in[0,1], t\in[0,0.4]
+# 
+# example code : NLinAdv0005
+
+origin 0.0 //
+
+Nx  10
+Dx  0.1 // 
+# Nx  20
+# Dx  0.05 // 
+# Nx  40
+# Dx  0.025 // 
+# Nx  80
+# Dx  0.0125 // 
+# Nx  160
+# Dx  0.00625 // 
+# Nx  320
+# Dx  0.003125 // 
+# Nx  640
+# Dx  0.00078125 // 
+# Nx  1280
+# Dx  0.0015625 // 
+# Nx  1280
+# Dx  0.00078125 // 
+
+-polyDeg 3 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+#
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+# -dtmin 0.1 		//
+-t 0 0.4 //
+-Cr 1.5 //
+
+# -info Solving the inviscid Burgers equation using DG: x\in[0,1], u0 = 0.25 + 0.5\sin(\pi (2x-1)); periodic bc. //
+
+# -outfile prob3c.mat //
+# -outfile vanLeer3.mat //
+
+# -MPPlimit 0.5 1.0 //
+# -MPPlimit -0.25 0.75 //
+
+-transtype nonlinear //
+-orderRK 3 // order of RKDG method
+
+# -storeAll //
+

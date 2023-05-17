@@ -1,0 +1,53 @@
+# input file for 1D transport problem u_t + (a(x,t)u)_x = 0
+# a = 1,  u0 = sin(x)
+# Define domain : [0,2\pi]
+# 
+# example code : LinAdv0001b
+
+origin 0.0 //
+
+# Nx  5
+# Dx  1.2566370614359172 //
+# Nx  10
+# Dx  0.6283185307179586 //
+Nx  20
+Dx  0.3141592653589793 //
+# Nx  40
+# Dx  0.15707963267948966 //
+# Nx  80
+# Dx  0.07853981633974483 //
+# Nx  160
+# Dx  0.039269908169872414 //
+
+-polyDeg 2 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+ -t 0 20 // approx 6*pi
+#  -t 0 18.84955592153876 // approx 6*pi
+# -t 0 6.283185307179586 // approx 2*pi 
+# -t 0 2 //
+#  -Re	1 	// 
+-Cr 0.25 //
+# -Cr 2.18 //
+
+ -info Solving linear advection using SLDG: a = 1, x\in[0,2\pi], u0 = \sin(x) bc: periodic bc. //
+
+# -outfile prob1b.mat
+
+-transType constant //
+
+-orderRK 2 //
+
+# -MPPLimit -1 1 //
+
+# -storeAll //

@@ -1,0 +1,54 @@
+# input file for 1D transport problem u_t + (a(x,t)u)_x = 0
+# a = sin(t),  u0 = 0.75 + 0.25 sin(x)
+# Exact solution: u = u0(x+1+cos(t))
+# Define domain [0,2]
+# 
+# example code : LinAdv0004
+
+origin 0.0 //
+
+Nx  10
+Dx  0.2 // 
+# Nx  20
+# Dx  0.1 // 
+# Nx  40
+# Dx  0.05 //  
+# Nx  80
+# Dx  0.025 // 
+# Nx  160
+# Dx  0.0125 // 
+# Nx  320
+# Dx  0.00625 // 
+
+-polyDeg 3 //
+
+
+# boundary conditions #
+
+# -Dirbc left right //
+# -Dirbc all //
+# -Dirbctype Variable //
+# -Sourcetype 3 //
+
+
+-leftrightbc  // periodic bc
+
+# # run specifications & parameters
+
+# -dtmax 0.1  	//
+ -t 0 4.0 // 
+# -dtmin 0.1 //
+# -Cr 2.5 //
+# -Cr 2.5 //
+# -Cr 5.0 //
+-Cr 10.0 //
+
+-info Solving linear advection using SLDG: a = \sin(t), x\in[0,2],  u0 = 0.75 + 0.25 \sin(x); periodic bc. //
+
+-transType temporal //
+
+-orderRK 3 //
+
+# -MPPlimit 0.5 1.0 //
+
+# -storeAll //
