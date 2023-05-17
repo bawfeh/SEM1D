@@ -1,0 +1,135 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18320\viewh11500\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Burgers equation: u_t + f(u)_x = 0\
+
+\b0 f(u) = u^2/2, u(x,0) = u0 = 0.5 - 0.25\\sin(\\pi x)\
+x \\in [0,2], 0<t<T\
+bc = periodic\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Input files: NLinAdv0005d\
+Test file: test3.py, ref.py, temporalAccuracy4.py\
+minmod limiters; EO- numerical flux approximations\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+
+\b BurgersGRKDG4p6.pickle
+\b0 \
+Ref/exact solution: Using RKDG4 with minmod flux limiter\
+------------------------------------------------------------\
+Exection time: 5822.472790956497\
+Cr =  0.74; q = 6; nsteps = 15360; Ne = M = 1280; dt = 0.08h = 0.00013; T = 2.00\
+\
+Load results using the following numpy routine:\
+
+\b with open(\'92BurgersGRKDG4p6.pickle\'92, \'91rb\'92) as f:\
+	exactsol = pickle.load(f) 
+\b0 \
+	\
+sol = exactsol[0] # list of all solutions from t=0 to t = 2\
+gll = exactsol[1]  # gauss distribution object\
+mesh = exactsol[2] (or exactsol[-1]) # computational mesh object\
+\
+
+\b BurgersGRKDG3.npy
+\b0 \
+Using Eulerian RKDG3:\
+------------------------------------------------------------\
+Exection time: 2.873338222503662\
+Rel.L2-errors at times [0.  0.1 0.2 \'85 2. ] : err =  [3.12518011e-12 6.95970250e-04 \'85 2.83197400e-02]\
+Cr =  1.36; q = 3; 
+\b nsteps = 80; Ne = M = 40;
+\b0  dt = 0.50h = 0.02500; T = 2.00\
+\
+Load results using the following numpy routine:\
+with open(\'92BurgersGRKDG3.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1,\'85,2.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t = 0., 0.1,\'85,2.\
+	err = np.load(f)	# L2-errors vector\
+\
+
+\b BurgersGRKDG3v2.npy
+\b0 \
+Using Eulerian RKDG3:\
+------------------------------------------------------------\
+Exection time: 15.531009912490845\
+Rel.L2-errors at times [0.  0.1 0.2 \'85 2. ] : err =  [3.16604726e-12 4.64951661e-04 \'851.93746524e-02]\
+Cr =  1.36; q = 3; 
+\b nsteps = 160; Ne = M = 80;
+\b0  dt = 0.50h = 0.01250; T = 2.00\
+\
+Load results using the following numpy routine:\
+with open(\'92BurgersGRKDG3v2.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1,\'85,2.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t = 0., 0.1,\'85,2.\
+	err = np.load(f)	# L2-errors vector\
+\
+
+\b BurgersGRKDG3SL.npy
+\b0 \
+Using SLRKDG3; an = f(un)/un:\
+------------------------------------------------------------\
+Exection time: 25.88304877281189\
+Rel.L2-errors at times [0.  0.1 0.2 \'85 2. ] : err =  [3.12518011e-12 5.61440032e-04 \'85 2.67586394e-02]\
+Cr =  1.36; q = 3; 
+\b nsteps = 80; Ne = M = 40;
+\b0  dt = 0.50h = 0.02500; T = 2.00\
+\
+Load results using the following numpy routine:\
+with open(\'92BurgersGRKDG3SL.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1,\'85,2.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t = 0., 0.1,\'85,2.\
+	err = np.load(f)	# L2-errors vector\
+\
+
+\b BurgersGRKDG3SLv2.npy
+\b0 \
+Using SLRKDG3; an = f(un)/un:\
+------------------------------------------------------------\
+Exection time: 101.43701577186584\
+Rel.L2-errors at times [0.  0.1 0.2 \'85 2. ] : err =  [3.16604726e-12 1.47179661e-04 \'851.83095844e-02]\
+Cr =  1.36; q = 3; 
+\b nsteps = 160; Ne = M = 80;
+\b0  dt = 0.50h = 0.01250; T = 2.00\
+\
+Load results using the following numpy routine:\
+with open(\'92BurgersGRKDG3SLv2.npy\'92, \'91rb\'92) as f:\
+	u = np.load(f)  # numerical solutions at times t = 0., 0.1,\'85,2.\
+	x = np.load(f)	# mesh points\
+	t = np.load(f)	# times vector\
+	ue = np.load(f)    # exact solutions at times t = 0., 0.1,\'85,2.\
+	err = np.load(f)	# L2-errors vector\
+\
+\
+
+\b BurgersGRKDG3hConvSL.npy
+\b0 \
+Using SLRKDG3; an = f(un)/un:\
+------------------------------------------------------------\
+h-convergence using q = 3; M = Ne = 10,20,40,80,160,320,640; T = 4.00\
+nsteps chosen such that Cr is fixed and nsteps>=1;\
+
+\b Rel. L2-Errors
+\b0  computed for each Ne;\
+Repeat procedure for Cr = 0.1,0.5,1.0,1.5,2.0\
+\
+Load results using the following numpy routine:\
+with open(\'92BurgersGRKDG3hConv.npy\'92, \'91rb\'92) as f:\
+	errs = np.load(f)  # (5,7) list of 
+\b relative
+\b0  L2-errors [len(Cr)=5, len(Ne)=7]\
+	Ne = np.load(f)	# vector of number of elements\
+	dt = np.load(f)	# (5,7) list of time step sizes used\
+\
+\
+}
