@@ -4,6 +4,7 @@ import numpy as np
 import InputFile as IN
 import GaussMesh as GM
 
+# Name of input file
 filename = '/Users/bawfeh78/Documents/Cplusplus/SLDG/input1.txt'
 
 data = IN.Parameters() # default input data
